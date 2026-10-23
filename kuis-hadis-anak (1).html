@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asesmen Hadis untuk Anak</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff4d6;--bg2:#ffe7a8;--card:#fffaf0;--ink:#4a3424;--mut:#8a6f55;--line:#f1d9a0;--ok:#2fa866;--okbg:#e2f7e8;--no:#e5533d;--nobg:#ffe5df;--pri:#ff8a3d;--pri2:#ffb347;--blue:#4aa8d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3a2e22;--bg2:#4a3a28;--card:#493b2c;--ink:#fff1d6;--mut:#d8bf9a;--line:#6a5538;--okbg:#1f4a30;--nobg:#5a2d26;color-scheme:dark}}
+html{font-size:clamp(14px,min(2vh,1.1vw),28px);scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Fredoka,"Trebuchet MS",sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;background-image:radial-gradient(var(--bg2) 2px,transparent 2px);background-size:26px 26px}
+#app{width:100%;padding:1.2vh 1.6vw 3vh;display:flex;flex-direction:column;gap:1.2rem}
+.card{background:var(--card);border:3px solid var(--line);border-radius:1.6rem;padding:1.1rem 1.4rem;box-shadow:0 6px 0 var(--line);animation:pop .35s ease;min-width:0}
+@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:none;opacity:1}}
+h1,h2{margin:.2em 0}h1{font-size:2.2rem}h2{font-size:1.9rem}
+.tag{display:inline-block;background:var(--pri2);color:#4a2a00;border-radius:99px;padding:.2rem .9rem;font-weight:600;font-size:1rem}
+.arab{font-family:Amiri,"Traditional Arabic",serif;font-size:3rem;direction:rtl;text-align:center;line-height:1.8;background:var(--bg);border-radius:1.2rem;padding:.4rem .8rem;margin:.7rem 0}
+.arab.s{font-size:2.2rem;margin:.5rem 0}
+.trans{font-size:1.6rem;font-weight:600;text-align:center;line-height:1.35}.trans.s{font-size:1.2rem}
+.src{text-align:center;color:var(--mut);font-size:.95rem;margin-top:.3rem}
+.box{border-radius:1.1rem;padding:.8rem 1rem;margin-top:.8rem;font-size:1.3rem;line-height:1.45}
+.ex{background:var(--bg2)}.yes{background:var(--okbg)}.nope{background:var(--nobg)}
+.btn{font:inherit;font-weight:700;font-size:1.3rem;border:0;border-radius:99px;padding:.7rem 1.8rem;cursor:pointer;background:var(--blue);color:#fff;box-shadow:0 5px 0 #2d7fab;transition:transform .1s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #2d7fab}
+.btn.or{background:var(--pri);box-shadow:0 5px 0 #c4631a}.btn.or:active{box-shadow:0 1px 0 #c4631a}
+.btn.gr{background:var(--ok);box-shadow:0 5px 0 #1f7a48}
+.btn.ghost{background:var(--bg2);color:var(--ink);box-shadow:0 5px 0 var(--line)}
+.btn:disabled{opacity:.4;pointer-events:none}
+.mulai{display:block;width:100%;font-size:2rem;padding:.9rem;background:linear-gradient(90deg,#ff5e5e,#ff8a3d,#ffc23d);box-shadow:0 7px 0 #b84a12;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.03)}}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:1rem}
+.dots{display:flex;gap:6px;justify-content:center;margin:.7rem 0}.dots i{width:.8rem;height:.8rem;border-radius:50%;background:var(--line)}.dots i.on{background:var(--pri);transform:scale(1.3)}
+input{font:inherit;font-size:1.5rem;width:100%;padding:.7rem 1rem;border:3px solid var(--line);border-radius:1rem;background:var(--bg);color:var(--ink);margin:.3rem 0 1rem}
+input:focus{outline:none;border-color:var(--pri)}
+label{font-weight:600;font-size:1.3rem}
+.bio{max-width:55rem;margin:2vh auto;width:100%;font-size:1.3rem}
+.top{display:flex;align-items:center;gap:1rem;font-weight:600;font-size:1.2rem;padding-right:3.5rem}
+.bar{flex:1;height:1.1rem;background:var(--line);border-radius:99px;overflow:hidden}.bar b{display:block;height:100%;background:linear-gradient(90deg,var(--pri),#ffc23d);border-radius:99px;transition:width .4s}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:99px;padding:.15rem .9rem;font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40%}
+.q{font-size:1.65rem;line-height:1.45;font-weight:500;margin:.8rem 0 0;padding:.8rem 1rem;border-left:.5rem solid var(--pri);background:var(--bg);border-radius:.4rem 1.1rem 1.1rem .4rem}
+.opt{display:flex;gap:.9rem;align-items:center;width:100%;text-align:left;font:inherit;font-size:1.3rem;line-height:1.3;color:var(--ink);background:var(--bg);border:3px solid var(--line);border-radius:1.2rem;padding:.65rem .9rem;margin-bottom:.7rem;cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--pri);transform:translateX(4px)}
+.opt span{flex:none;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--line);display:grid;place-items:center;font-weight:700}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}.opt.ok span{background:var(--ok);color:#fff}
+.opt.no{background:var(--nobg);border-color:var(--no);animation:shake .4s}.opt.no span{background:var(--no);color:#fff}
+.opt:disabled{cursor:default}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{border-radius:1.1rem;padding:.7rem 1rem;font-size:1.15rem;line-height:1.45;animation:pop .3s}
+.fb.ok{background:var(--okbg);border:3px solid var(--ok)}.fb.no{background:var(--nobg);border:3px solid var(--no)}
+.grid{display:flex;flex-direction:column;gap:1.2rem}
+@media (min-aspect-ratio:5/4){
+#app{height:100dvh;overflow:hidden;gap:1vh;padding:1.2vh 1.6vw}
+.grid{display:grid;grid-template-columns:1fr 1.05fr;gap:1.6vw;flex:1;min-height:0}
+.grid>.card{overflow:auto;display:flex;flex-direction:column}
+.grid .push{margin-top:auto}
+.mat{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0}
+.mat>.card{overflow:auto}
+.res{flex-direction:row!important;align-items:center;justify-content:center;gap:3vw;flex:1;min-height:0}
+.res img{max-height:78vh;width:auto!important}
+}
+#cf{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+#mot{position:fixed;inset:0;display:none;place-items:center;z-index:60;pointer-events:none}
+#mot div{background:var(--card);border:4px solid var(--pri);border-radius:30px;padding:1.4rem 2rem;text-align:center;font-size:1.8rem;font-weight:700;box-shadow:0 10px 0 var(--line);animation:pop .3s}
+#mot em{display:block;font-style:normal;font-size:4.5rem;animation:bob .6s infinite alternate}
+@keyframes bob{to{transform:translateY(-14px) rotate(8deg)}}
+#fs{position:fixed;right:10px;top:calc(8px + env(safe-area-inset-top,0px));z-index:40;padding:.3rem .8rem;font-size:1.1rem;box-shadow:0 3px 0 var(--line)}
+.res{display:flex;flex-direction:column}
+.res img{width:100%;max-width:26rem;display:block;margin:0 auto 1rem;border-radius:20px;border:3px solid var(--line)}
+.row{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.sbtn{display:flex;flex-direction:column;gap:1rem;align-items:stretch}
+</style></head><body>
+<button class="btn ghost" id="fs" title="Layar penuh">⛶</button>
+<canvas id="cf"></canvas><div id="mot"></div>
+<div id="app"></div>
+<script>
+const MAT=[
+{t:"Menjadi Pelopor Kebaikan",a:"اَلدَّالُّ عَلَى الْخَيْرِ كَفَاعِلِهِ",tr:"“Orang yang menunjukkan suatu kebaikan balasannya seperti orang yang mengerjakannya.”",r:"HR. At-Tirmidzi, Shahih Al-Jami’ No. 3399",e:"Kalau kamu mengajak atau memberi tahu teman berbuat baik, kamu ikut mendapat pahala seperti temanmu yang mengerjakannya. Jadi, ayo jadi pelopor kebaikan! 🌟",y:"Mengajak teman salat berjamaah, menunjukkan jalan, mengajari teman yang belum bisa.",n:"Menyembunyikan ilmu, menyuruh teman menyontek, membiarkan teman berbuat salah.",em:"🤝"},
+{t:"Jagalah Rasa Malu",a:"اَلْحَيَاءُ مِنَ الْإِيمَانِ",tr:"“Rasa malu itu adalah sebagian dari iman.”",r:"HR. Bukhari No. 24 dan Muslim No. 36",e:"Malu yang baik membuat kita takut berbuat salah, seperti berbohong, mencuri, atau berkata kasar. Tetapi kita tidak boleh malu untuk bertanya hal yang baik atau meminta maaf. 😊",y:"Malu berbohong, malu menyontek, malu berkata kasar, berani bertanya dan minta maaf.",n:"Tidak malu berbuat salah, atau malu bertanya pelajaran kepada guru.",em:"🌸"},
+{t:"Baca Bismillah dan Makan dengan Tangan Kanan",a:"سَمِّ اللهَ وَكُلْ بِيَمِينِكَ وَكُلْ مِمَّا يَلِيكَ",tr:"“Bacalah ‘bismillah’, makanlah dengan tangan kananmu dan makanlah makanan yang ada di dekatmu.”",r:"HR. Bukhari No. 5376 dan Muslim No. 2022",e:"Adab makan: mulai dengan membaca bismillah, memakai tangan kanan, dan mengambil makanan yang dekat dengan kita supaya sopan kepada orang lain. 🍚",y:"Baca bismillah, tangan kanan, ambil makanan yang dekat.",n:"Makan tanpa doa, memakai tangan kiri, mengambil makanan yang jauh sambil melewati orang lain.",em:"🍽️"},
+{t:"Jauhilah Neraka",a:"اِتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ",tr:"“Jauhilah neraka walaupun hanya bersedekah setengah butir kurma.”",r:"HR. Bukhari No. 6539 dan Muslim No. 1016",e:"Bersedekah tidak harus banyak. Sedekah yang sedikit pun bernilai besar dan bisa menjauhkan kita dari neraka. Yang penting ikhlas! 💝",y:"Berbagi bekal, memasukkan uang kecil ke kotak amal, memberi pakaian layak pakai.",n:"Tidak mau bersedekah karena merasa jumlahnya terlalu sedikit.",em:"🌴"}];
+// [hadis, soal, benar, salah1, salah2, salah3, pembahasan]
+const Q=[
+[0,"Rani mengajak temannya salat berjamaah di musala, lalu temannya mau ikut. Menurut hadis di atas, Rani akan mendapat ...","pahala seperti pahala temannya yang salat","pahala lebih banyak daripada temannya","pahala hanya jika ia ikut berjamaah","pahala hanya jika temannya berterima kasih","Orang yang menunjukkan kebaikan mendapat balasan seperti pelakunya, walaupun ia tidak ikut mengerjakan."],
+[0,"Perilaku yang TIDAK sesuai dengan hadis di atas adalah ...","Ina menolak memberi tahu teman cara mengerjakan tugas","Ani memberi tahu teman jalan menuju perpustakaan","Ali mengajari adiknya membaca doa sebelum tidur","Ira mengingatkan teman membuang sampah di tempatnya","Menolak membantu orang menuju kebaikan tidak sesuai dengan sikap pelopor kebaikan."],
+[0,"Budi melihat nenek kesulitan menyeberang jalan. Sikap Budi yang sesuai dengan hadis di atas adalah ...","menuntun nenek dan mengajak teman ikut membantu","menuntun nenek lalu meminta imbalan dari keluarganya","memanggil teman membantu sambil merekam kejadiannya","meminta teman menuntun nenek sambil ia menonton","Menolong dan mengajak orang lain berbuat baik adalah ciri pelopor kebaikan."],
+[0,"Menurut hadis di atas, seseorang yang menunjukkan kebaikan mendapat pahala karena ...","ia menjadi sebab orang lain mengerjakan kebaikan","ia mengerjakan kebaikan itu lebih dahulu sendirian","ia lebih pandai daripada orang yang mengerjakannya","ia dikenal baik oleh banyak orang di sekitarnya","Penunjuk kebaikan menjadi sebab terjadinya kebaikan, sehingga ia ikut mendapat pahalanya."],
+[0,"Perilaku yang TIDAK sesuai dengan hadis di atas adalah ...","Dika menunjukkan jawaban agar temannya bisa menyontek","Dika menjelaskan langkah mengerjakan soal kepada teman","Dika mengajak temannya belajar kelompok di rumah","Dika meminjamkan catatan agar temannya paham","Menunjukkan cara curang bukan kebaikan, jadi tidak mendapat pahala."],
+[1,"Rasa malu yang sesuai dengan hadis di atas adalah malu untuk ...","berbohong kepada orang tua","bertanya kepada guru saat belum paham","meminta maaf kepada teman yang disakiti","menolong teman yang sedang kesulitan","Rasa malu yang termasuk iman membuat kita menjauhi perbuatan buruk, seperti berbohong."],
+[1,"Tono hampir menyontek saat ujian, tetapi merasa malu lalu mengerjakan sendiri. Sikap Tono ...","sesuai, karena malu berbuat curang termasuk bagian iman","sesuai, karena ia takut guru melihatnya menyontek","tidak sesuai, karena malu membuat anak takut mencoba","tidak sesuai, karena menyontek boleh jika ujiannya sulit","Malu berbuat curang adalah bagian dari iman, bukan sekadar takut ketahuan."],
+[1,"Perilaku yang TIDAK sesuai dengan hadis di atas adalah ...","Ani tertawa saat ketahuan berbohong dan tidak merasa bersalah","Ani malu saat ketahuan mengambil pensil milik temannya","Ani malu berkata kasar kepada ibunya","Ani malu karena tidak mengerjakan tugas sekolah","Tidak merasa bersalah saat berbuat salah berarti tidak menjaga rasa malu yang merupakan bagian iman."],
+[1,"Rina menolak ikut menyontek meski diajak banyak teman karena malu kepada Allah. Sikap Rina menunjukkan bahwa rasa malu ...","menjaga seseorang dari perbuatan buruk","membuat seseorang sulit bergaul","hanya dimiliki anak yang pendiam","muncul karena takut dimarahi guru","Rasa malu yang termasuk iman menjaga kita dari perbuatan buruk."],
+[1,"Doni belum paham pelajaran, tetapi malu bertanya kepada guru. Penilaian yang tepat adalah ...","tidak sesuai, karena malu bertanya hal baik bukan malu yang terpuji","sesuai, karena Doni menjaga rasa malunya di depan teman","sesuai, karena anak baik sebaiknya tidak banyak bertanya","tidak sesuai, karena Doni harus menunggu teman bertanya dahulu","Rasa malu yang terpuji menjauhkan dari dosa, bukan menghalangi kita belajar."],
+[2,"Dimas akan makan nasi goreng bersama keluarga. Sesuai hadis di atas, ia memulainya dengan ...","membaca bismillah sebelum menyuap makanan","membaca hamdalah sebelum menyuap makanan","mengucap salam sebelum menyuap makanan","membaca istigfar sebelum menyuap makanan","Hadis mengajarkan memulai makan dengan membaca bismillah."],
+[2,"Saat mengambil nasi dan lauk, sikap yang sesuai dengan hadis di atas adalah memakai ...","tangan kanan, karena itu adab makan yang diajarkan Nabi","tangan kiri, karena tangan kanan memegang gelas","kedua tangan, supaya makan lebih cepat selesai","tangan mana saja, karena tidak ada aturan khusus","Hadis memerintahkan makan dengan tangan kanan."],
+[2,"Perilaku yang TIDAK sesuai dengan hadis di atas adalah ...","Eko mengambil lauk yang jauh dengan tangan kiri","Eko mengambil lauk yang dekat dengan tangan kanan","Eko membaca bismillah sebelum mengambil lauk","Eko menunggu giliran sebelum mengambil lauk","Tangan kiri dan mengambil makanan yang jauh tidak sesuai dengan adab dalam hadis."],
+[2,"Rina makan bersama keluarga dari satu piring besar. Sikap Rina yang sesuai dengan hadis di atas adalah ...","membaca bismillah, memakai tangan kanan, mengambil makanan yang dekat","membaca bismillah, memakai tangan kiri, mengambil makanan yang dekat","membaca hamdalah, memakai tangan kanan, mengambil makanan yang jauh","membaca bismillah, memakai tangan kanan, mengambil makanan di depan orang lain","Tiga adab dalam hadis: bismillah, tangan kanan, dan makanan yang dekat."],
+[2,"Alasan kita dianjurkan mengambil makanan yang ada di dekat kita adalah ...","agar sopan dan tidak mengganggu orang lain yang makan","agar makanan cepat habis dan tidak tersisa di piring","agar mendapat bagian makanan yang paling besar","agar tidak perlu mencuci tangan setelah makan","Mengambil yang dekat menjaga kesopanan saat makan bersama."],
+[3,"Dedi hanya punya uang Rp1.000 saat melihat kotak amal. Sikap Dedi yang sesuai dengan hadis di atas adalah ...","memasukkannya ke kotak amal dengan ikhlas","memasukkannya ke kotak amal sambil berharap dipuji","menyimpannya karena jumlahnya terlalu sedikit","menunggu punya uang banyak untuk bersedekah","Sedekah sedikit tetap berharga jika dilakukan dengan ikhlas."],
+[3,"Hadis di atas menganjurkan kita untuk bersedekah ...","sekecil apa pun dengan ikhlas","hanya jika uangnya sangat banyak","hanya pada saat bulan Ramadan","hanya kepada keluarga sendiri","Sedekah sekecil apa pun, seperti setengah butir kurma, tetap dianjurkan."],
+[3,"Perilaku yang TIDAK sesuai dengan hadis di atas adalah ...","Tia tidak bersedekah karena merasa uangnya terlalu sedikit","Tia membagi bekalnya kepada teman yang lupa membawa","Tia memberikan pakaian layak pakai kepada tetangga","Tia memasukkan uang sakunya ke kotak amal masjid","Merasa sedekah kecil tidak berguna bertentangan dengan hadis tersebut."],
+[3,"Makna “setengah butir kurma” dalam hadis di atas adalah ...","sedekah sekecil apa pun tetap bernilai di sisi Allah","sedekah wajib berupa buah kurma yang dibelah","sedekah baru bernilai jika jumlahnya banyak","sedekah hanya boleh dilakukan pada hari Jumat","Kurma yang dibelah menggambarkan sedekah yang sangat kecil namun tetap berpahala."],
+[3,"Lina membawa dua roti, sedangkan temannya tidak membawa bekal. Sikap Lina yang sesuai dengan hadis di atas adalah ...","membagi satu rotinya kepada temannya","menjual satu rotinya kepada temannya","menyimpan kedua rotinya di dalam tas","memakan kedua rotinya di tempat lain","Berbagi walau sedikit adalah bentuk sedekah yang dianjurkan."]];
+
+const $=s=>document.querySelector(s),app=$("#app");
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+let S={name:"",kls:"",list:[],i:0,ok:0,done:false,cur:null};
+let AC;
+function tone(f,t,d,ty="sine",v=.18){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+t;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g).connect(AC.destination);o.start(s);o.stop(s+d)}catch(e){}}
+const sndOk=()=>{[523,659,784,1047,1319].forEach((f,i)=>tone(f,i*.09,.3,"triangle"));tone(200,0,.15,"square",.1)};
+const sndNo=()=>{tone(392,0,.25,"sine",.2);tone(330,.2,.35,"sine",.2);tone(440,.65,.2,"triangle",.15);tone(587,.8,.35,"triangle",.15)};
+const sndClick=()=>tone(700,0,.08,"sine",.1);
+
+// confetti ribbons
+const cv=$("#cf"),cx=cv.getContext("2d");
+function confetti(){cv.width=innerWidth;cv.height=innerHeight;const C=["#ff5e5e","#ffb347","#ffd93d","#4cc38a","#4aa8d8","#b57bee","#ff7eb6"];
+const P=Array.from({length:160},()=>{const a=Math.random()*Math.PI-Math.PI*1.0;return{x:cv.width/2,y:cv.height*.65,vx:Math.cos(a)*(4+Math.random()*10),vy:Math.sin(a)*(8+Math.random()*12),w:5+Math.random()*7,h:14+Math.random()*16,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:C[Math.random()*C.length|0]}});
+let n=0;(function f(){cx.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.scale(1,Math.cos(p.r*1.5));cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()});if(++n<150)requestAnimationFrame(f);else cx.clearRect(0,0,cv.width,cv.height)})()}
+function motiv(){const M=[["💪","Ayo semangat! Kamu pasti bisa!"],["🌈","Tidak apa-apa salah, kita belajar bersama!"],["⭐","Hebat sudah berusaha! Coba lagi ya!"],["🚀","Jangan menyerah, soal berikutnya pasti bisa!"]];const m=M[Math.random()*M.length|0],e=$("#mot");e.innerHTML=`<div><em>${m[0]}</em>${m[1]}</div>`;e.style.display="grid";setTimeout(()=>e.style.display="none",1700)}
+
+function go(p){S.page=p;render();scrollTo(0,0)}
+function render(){const p=S.page;
+if(p<4){const m=MAT[p];
+app.innerHTML=`${p==3?'<button class="btn mulai" id="go">🚀 MULAI MENGERJAKAN!</button>':''}
+<div class="mat"><div class="card"><span class="tag">${m.em} Hadis ${p+1} dari 4</span><h2>${m.t}</h2>
+<div class="arab">${m.a}</div><div class="trans">${m.tr}</div><div class="src">${m.r}</div></div>
+<div class="card"><div class="box ex" style="margin-top:0"><b>📖 Penjelasan:</b> ${m.e}</div>
+<div class="box yes"><b>✅ Contoh sesuai:</b> ${m.y}</div>
+<div class="box nope"><b>❌ Contoh tidak sesuai:</b> ${m.n}</div>
+<div class="dots push">${[0,1,2,3].map(i=>`<i class="${i==p?'on':''}"></i>`).join("")}</div>
+<div class="nav"><button class="btn ghost" id="pv" ${p==0?'disabled':''}>◀ Kembali</button>${p<3?'<button class="btn or" id="nx">Lanjut ▶</button>':'<span></span>'}</div></div></div>`;
+$("#pv").onclick=()=>{sndClick();go(p-1)};if($("#nx"))$("#nx").onclick=()=>{sndClick();go(p+1)};if($("#go"))$("#go").onclick=()=>{sndClick();go(4)};
+}else if(p==4){
+app.innerHTML=`<div class="card bio"><span class="tag">📝 Biodata</span><h1>Halo, Anak Hebat! 👋</h1><p>Isi dulu namamu ya sebelum mengerjakan 20 soal.</p>
+<label>Nama Lengkap</label><input id="nm" maxlength="40" placeholder="Contoh: Aisyah Putri" value="${esc(S.name)}">
+<label>Kelas</label><input id="kl" maxlength="12" placeholder="Contoh: 6A" value="${esc(S.kls)}">
+<div class="nav"><button class="btn ghost" id="bk">◀ Materi</button><button class="btn or" id="st">Mulai Soal ▶</button></div></div>`;
+$("#bk").onclick=()=>go(3);
+$("#st").onclick=()=>{const n=$("#nm").value.trim(),k=$("#kl").value.trim();if(!n||!k){alert("Isi nama lengkap dan kelas dulu ya 😊");return}S.name=n;S.kls=k;S.list=shuf(Q);S.i=0;S.ok=0;sndClick();go(5)};
+}else if(p==5)quiz();else result();}
+
+function quiz(){const q=S.list[S.i],m=MAT[q[0]];
+const opts=shuf([[q[2],1],[q[3],0],[q[4],0],[q[5],0]]);S.cur={q,opts,ans:false};
+app.innerHTML=`<div class="top"><span>Soal ${S.i+1}/20</span><div class="bar"><b style="width:${S.i/20*100}%"></b></div><span class="chip">👤 ${esc(S.name)} • ${esc(S.kls)}</span></div>
+<div class="grid"><div class="card"><span class="tag">📜 Bacalah hadis berikut!</span>
+<div class="arab s">${m.a}</div><div class="trans s">${m.tr}</div><div class="src">${m.r}</div>
+<div class="q push">${S.i+1}. ${q[1]}</div></div>
+<div class="card"><div id="os">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span>${"ABCD"[i]}</span>${o[0]}</button>`).join("")}</div><div id="fb" class="push"></div></div></div>`;
+document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>answer(+b.dataset.i))}
+function answer(i){const c=S.cur;if(c.ans)return;c.ans=true;const good=c.opts[i][1]==1;
+document.querySelectorAll(".opt").forEach((b,k)=>{b.disabled=true;if(c.opts[k][1])b.classList.add("ok");else if(k==i)b.classList.add("no")});
+const last=S.i==19;
+if(good){S.ok++;sndOk();confetti()}else{sndNo();motiv()}
+$("#fb").innerHTML=`<div class="fb ${good?'ok':'no'}"><b>${good?'🎉 Benar! Hebat sekali!':'🤗 Belum tepat, tidak apa-apa!'}</b><br>${good?'':'Jawaban benar: <b>'+c.opts.find(o=>o[1])[0]+'</b><br>'}<b>Pembahasan:</b> ${c.q[6]}</div>
+<div class="nav" style="margin-top:.7rem"><span></span><button class="btn ${last?'gr':'or'}" id="nq">${last?'Lihat Skor 🏆':'Soal Berikutnya ▶'}</button></div>`;
+$("#nq").onclick=()=>{sndClick();if(last){S.done=true;go(6);autoSave()}else{S.i++;render();scrollTo(0,0)}};
+$("#nq").scrollIntoView({behavior:"smooth",block:"nearest"})}
+
+const score=()=>Math.round(S.ok/20*100);
+function card(){const c=document.createElement("canvas");c.width=800;c.height=1000;const x=c.getContext("2d"),sc=score();
+const g=x.createLinearGradient(0,0,0,1000);g.addColorStop(0,"#fff4d6");g.addColorStop(1,"#ffe0a0");x.fillStyle=g;x.fillRect(0,0,800,1000);
+x.fillStyle="#ffd58a55";for(let i=0;i<30;i++){x.beginPath();x.arc((i*173)%800,(i*97)%1000,6+(i%4)*4,0,7);x.fill()}
+x.strokeStyle="#ff8a3d";x.lineWidth=14;x.beginPath();x.roundRect(30,30,740,940,50);x.stroke();
+x.textAlign="center";x.fillStyle="#4a3424";x.font="700 44px Fredoka,sans-serif";x.fillText("🌟 KARTU SKOR 🌟",400,130);
+x.font="500 30px Fredoka,sans-serif";x.fillStyle="#8a6f55";x.fillText("Asesmen Hadis untuk Anak",400,180);
+const gg=x.createRadialGradient(400,430,20,400,430,190);gg.addColorStop(0,"#ffd93d");gg.addColorStop(1,"#ff8a3d");x.fillStyle=gg;x.beginPath();x.arc(400,430,190,0,7);x.fill();
+x.fillStyle="#fff";x.font="700 150px Fredoka,sans-serif";x.fillText(sc,400,480);x.font="600 34px Fredoka,sans-serif";x.fillText("dari 100",400,540);
+x.fillStyle="#4a3424";x.font="700 46px Fredoka,sans-serif";let nm=S.name;while(x.measureText(nm).width>660&&nm.length>3)nm=nm.slice(0,-2);if(nm!=S.name)nm+="…";x.fillText(nm,400,700);
+x.font="500 36px Fredoka,sans-serif";x.fillText("Kelas "+S.kls,400,755);
+x.fillText(`Benar ${S.ok} dari 20 soal`,400,815);
+x.font="700 38px Fredoka,sans-serif";x.fillStyle="#e5533d";x.fillText(sc>=90?"Luar biasa! Pelopor Kebaikan! 🏆":sc>=70?"Hebat! Terus berbuat baik! 🎉":sc>=50?"Bagus! Ayo belajar lagi! 💪":"Semangat! Kamu pasti bisa! 🌈",400,885);
+x.font="400 24px Fredoka,sans-serif";x.fillStyle="#8a6f55";x.fillText(new Date().toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}),400,935);return c}
+const blobOf=c=>new Promise(r=>c.toBlob(r,"image/png"));
+const fname=()=>"Skor-"+S.name.replace(/[^\w]+/g,"_")+".png";
+async function save(){const b=await blobOf(card());try{const d=await claude.use("downloads");if(d){await d.save({filename:fname(),data:b});return}}catch(e){}
+const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=fname();document.body.appendChild(a);a.click();a.remove()}
+function autoSave(){save().catch(()=>{})}
+async function share(){const sc=score(),t=`Skor Asesmen Hadis untuk Anak\n${S.name} (Kelas ${S.kls})\nNilai: ${sc}/100 🌟`;
+try{const b=await blobOf(card()),f=new File([b],fname(),{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:t});return}}catch(e){if(e&&e.name=="AbortError")return}
+await save().catch(()=>{});window.open("https://wa.me/?text="+encodeURIComponent(t+"\n(Kartu skor tersimpan, silakan lampirkan gambarnya)"),"_blank")}
+function result(){const sc=score();app.innerHTML=`<div class="card res"><img id="im" alt="Kartu skor"><div class="sbtn"><button class="btn or" id="dl">⬇️ Unduh Kartu</button><button class="btn gr" id="wa">💬 Bagikan ke WhatsApp</button><button class="btn ghost" id="again">🔄 Ulangi dari Awal</button></div></div>`;
+$("#im").src=card().toDataURL();$("#dl").onclick=save;$("#wa").onclick=share;$("#again").onclick=()=>go(4);
+if(sc>=70){sndOk();confetti()}}
+
+// keluar tab / tutup => kembali ke biodata
+function reset(){S.list=[];S.i=0;S.ok=0;S.done=false;$("#mot").style.display="none";S.page=4;render()}
+document.addEventListener("visibilitychange",()=>{if(document.hidden)reset()});
+addEventListener("pagehide",reset);
+// layar penuh
+const fsOn=()=>{const e=document.documentElement;if(!document.fullscreenElement&&e.requestFullscreen)e.requestFullscreen().catch(()=>{})};
+document.addEventListener("pointerdown",fsOn,{once:true});
+$("#fs").onclick=e=>{e.stopPropagation();document.fullscreenElement?document.exitFullscreen():fsOn()};
+go(0);
+</script></body></html>
